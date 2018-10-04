@@ -77,3 +77,6 @@ export function isIOS() {
             !!(/ipod/i).exec(navigator.platform));
 }
 
+export function isSteam() {
+    return navigator && !!(/valve steam gameoverlay/i).exec(navigator.userAgent);
+}

@@ -105,6 +105,15 @@ export function getKey(evt) {
         // IE and Edge have broken handling of AltGraph so we cannot
         // trust them for printable characters
         if ((evt.key.length !== 1) || (!browser.isIE() && !browser.isEdge())) {
+            // Steam is FUBAR
+            if (browser.isSteam() && evt.key.length == 1 && evt.shiftKey) {
+                const lowerKeys = "\\`1234567890[]/',.pyfgcrl-=aoeuidhtns;qjkxbmwvz";
+                const upperKeys = "|~!@#$%^&*(){}?\"<>PYFGCRL_+AOEUIDHTNS:QJKXBMWVZ";
+                const i = lowerKeys.indexOf(evt.key);
+                if (i >= 0) {
+                    return upperKeys[i];
+                }
+            }
             return evt.key;
         }
     }
